@@ -21,7 +21,27 @@ class Graph:
         * If there is an end node input and a path does not exist, return None
 
         """
-        return
+
+        fakeq = [] #my "queue" is a list
+        visited = []
+        mypath = [] #figure out how to store answer
+
+        G = self.graph
+
+        fakeq.append(start)
+        visited.append(start)
+        
+        while len(fakeq) != 0:
+            v = fakeq[0]
+            N = G.adj[v]
+            fakeq = fakeq[1:] #will just take the first item off the list i.e. pop off
+
+            for neighbor in list(N):
+                if neighbor not in set(visited):
+                    visited.append(neighbor)
+                    fakeq.append(visited) #add element to the back of the list i.e. push
+
+        return mypath
 
 
 
