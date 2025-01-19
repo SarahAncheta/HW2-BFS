@@ -24,7 +24,7 @@ class Graph:
 
         fakeq = [] #my "queue" is a list
         visited = []
-        mypath = [] #figure out how to store answer
+        myparent = {} #figure out how to store answer
 
         G = self.graph
 
@@ -38,10 +38,26 @@ class Graph:
 
             for neighbor in list(N):
                 if neighbor not in set(visited):
+                    myparent[neighbor] = v
                     visited.append(neighbor)
-                    fakeq.append(visited) #add element to the back of the list i.e. push
+                    fakeq.append(neighbor) #add element to the back of the list i.e. push
 
-        return mypath
+                    if (end is not None) and (neighbor == end):
+                        mypath = []
+                        current = neighbor
+                        while current != start:
+                            mypath.insert(0, current)
+                            current = myparent[current]
+                        current.insert(0, start)
+                        return mypath
+
+                    else:
+                        continue
+            
+        if end is not None:
+            return None
+        else:
+            return visited
 
 
 
