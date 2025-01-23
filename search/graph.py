@@ -22,12 +22,21 @@ class Graph:
 
         """
 
-        fakeq = [] #my "queue" is a list
+        fakeq = [] #my "queue" is a list because I feel like using the queue package
         visited = []
         myparent = {} #figure out how to store answer
 
         G = self.graph
 
+        if start not in G.nodes:
+            raise ValueError("The input start node is not in the graph")  ##raises an exception
+        
+        if (end is not None) and (end not in G.nodes):
+            raise ValueError("The input end node is not the graph")
+        
+        if not set(list(G.nodes)):
+            raise ValueError("The input graph is empty and contains no nodes")
+        
         fakeq.append(start)
         visited.append(start)
         
@@ -37,6 +46,10 @@ class Graph:
             fakeq = fakeq[1:] #will just take the first item off the list i.e. pop off
 
             for neighbor in list(N):
+
+                ## check if the list of adjacent things is empty (means it is disconnected)
+                ##make sure it will quit if disconnected
+
                 if neighbor not in set(visited):
                     myparent[neighbor] = v
                     visited.append(neighbor)
@@ -48,7 +61,7 @@ class Graph:
                         while current != start:
                             mypath.insert(0, current)
                             current = myparent[current]
-                        current.insert(0, start)
+                        mypath.insert(0, start)
                         return mypath
 
                     else:
@@ -56,8 +69,8 @@ class Graph:
             
         if end is not None:
             return None
-        else:
-            return visited
+
+        return visited
 
 
 
