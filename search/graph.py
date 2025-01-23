@@ -14,11 +14,13 @@ class Graph:
 
     def bfs(self, start, end=None):
         """
-        TODO: write a method that performs a breadth first traversal and pathfinding on graph G
+        Method performs a breadth first traversal and pathfinding on graph G
 
-        * If there's no end node input, return a list nodes with the order of BFS traversal
-        * If there is an end node input and a path exists, return a list of nodes with the order of the shortest path
-        * If there is an end node input and a path does not exist, return None
+        * If there's no end node input, returns a list nodes with the order of BFS traversal
+        * If there is an end node input and a path exists, returns a list of nodes with the order of the shortest path
+        * If there is an end node input and a path does not exist, returns None
+        * Will raise exceptions (ValueError) if the input node or end node (if provided) is not in the graph
+        * Will raise exception (ValueError) if the input graph is empty and has no nodes
 
         """
 
