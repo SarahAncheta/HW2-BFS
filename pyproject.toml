@@ -19,6 +19,8 @@ classifiers = ["License :: OSI Approved :: MIT License"]
 dynamic = ["version", "description"]
 dependencies = [
     "pytest",
+    "networkx==2.5",
+    "pytest>=3.0"
 ]
 
 [project.urls]
