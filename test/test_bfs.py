@@ -2,6 +2,10 @@
 import pytest
 from search.graph import Graph
 
+from pathlib import Path
+
+datadir = Path(__file__).parent.parent / 'data'
+
 
 def test_bfs_traversal():
     """
@@ -11,7 +15,7 @@ def test_bfs_traversal():
     the right number of nodes and in the right order)
     """
 
-    tiny = Graph('/Users/sancheta/Desktop/Classes/Algo/HW2-BFS/data/tiny_network.adjlist')
+    tiny = Graph(datadir / 'tiny_network.adjlist')
 
     fulltraversal = ['Luke Gilbert', '33483487', '31806696', '31626775', '31540829', 
                 'Martin Kampmann', 'Neil Risch', 'Nevan Krogan', 
@@ -37,7 +41,7 @@ def test_bfs():
     This include an additional test for nodes that are not connected, ensuring it returns None. 
     """
     
-    big = Graph('/Users/sancheta/Desktop/Classes/Algo/HW2-BFS/data/citation_network.adjlist')
+    big = Graph(datadir / 'citation_network.adjlist')
 
     assert big.bfs('Hao Li', 'Katie Pollard') is None #there is no path between Hao Li and Katie Pollard, so it returns None
 
@@ -49,7 +53,7 @@ def test_no_endnode():
     Tests BFS search for end node that is not in the graph. Tony Capra is not in the tiny network.
     """
 
-    tiny = Graph('/Users/sancheta/Desktop/Classes/Algo/HW2-BFS/data/tiny_network.adjlist')
+    tiny = Graph(datadir / 'tiny_network.adjlist')
 
     with pytest.raises(ValueError):
         tiny.bfs('Luke Gilbert', 'Tony Capra') #Tony is not found in the graph as an end node, so it raises a value error
@@ -59,7 +63,7 @@ def test_no_startnode():
     Tests BFS traversal for start node that is not in the graph. Tony Capra is not in the network.
     """
 
-    tiny = Graph('/Users/sancheta/Desktop/Classes/Algo/HW2-BFS/data/tiny_network.adjlist')
+    tiny = Graph(datadir / 'tiny_network.adjlist')
 
     with pytest.raises(ValueError):
         tiny.bfs('Tony Capra') #Tony is not found in the graph as a start node, so it raises a value error
@@ -70,7 +74,7 @@ def test_emptygraph():
     Tests BFS traversal value error for empty file
     """
 
-    empty = Graph('/Users/sancheta/Desktop/Classes/Algo/HW2-BFS/data/empty.adjlist')
+    empty = Graph(datadir / 'empty.adjlist')
 
     with pytest.raises(ValueError):
         empty.bfs('Tony Capra')
