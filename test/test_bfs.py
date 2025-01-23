@@ -67,7 +67,13 @@ def test_no_startnode():
 
 def test_emptygraph():
     """
+    Tests BFS traversal value error for empty file
     """
+
+    empty = Graph('/Users/sancheta/Desktop/Classes/Algo/HW2-BFS/data/empty.adjlist')
+
+    with pytest.raises(ValueError):
+        empty.bfs('Tony Capra')
 
 
 
